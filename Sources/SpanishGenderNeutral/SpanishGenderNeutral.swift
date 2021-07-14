@@ -17,10 +17,10 @@ public struct SpanishGenderNeutral {
         }
         
         /// The third person pronoun.
-        var thirdPerson: String
+        public var thirdPerson: String
         
         /// The suffix for gendered words.
-        var genderedSuffix: String
+        public var genderedSuffix: String
         
         /// Initializes a `CustomPronoun` instance.
         ///
@@ -29,7 +29,7 @@ public struct SpanishGenderNeutral {
         ///     - genderedSuffix: The letter to use as a suffix in gendered word.
         ///
         /// `genderedSuffix` must be a vowell or "y", if not, `Error.notPronounceable`will be thrown as this could cause some accessibility issues.
-        init(thirdPerson: String, genderedSuffix: Character) throws {
+        public init(thirdPerson: String, genderedSuffix: Character) throws {
             self.thirdPerson = thirdPerson.lowercased()
             self.genderedSuffix = String(genderedSuffix).lowercased()
             
