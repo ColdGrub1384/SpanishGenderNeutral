@@ -22,19 +22,23 @@ public struct SpanishGenderNeutral {
         /// The suffix for gendered words.
         public var genderedSuffix: String
         
+        var needsQU: Bool {
+            return genderedSuffix == "e"  || genderedSuffix == "i"
+        }
+        
         /// Initializes a `CustomPronoun` instance.
         ///
         /// - Parameters:
         ///     - thirdPerson: A third person pronoun.
         ///     - genderedSuffix: The letter to use as a suffix in gendered word.
         ///
-        /// `genderedSuffix` must be a vowell or "y", if not, `Error.notPronounceable`will be thrown as this could cause some accessibility issues.
+        /// `genderedSuffix` must be a vowell if not, `Error.notPronounceable`will be thrown as this could cause some accessibility issues.
         public init(thirdPerson: String, genderedSuffix: Character) throws {
             self.thirdPerson = thirdPerson.lowercased()
             self.genderedSuffix = String(genderedSuffix).lowercased()
             
             switch genderedSuffix {
-            case "a", "e", "i", "o", "u", "y":
+            case "a", "e", "i", "o", "u":
                 break
             default:
                 throw Error.notPronounceable

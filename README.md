@@ -100,6 +100,24 @@ let customPronoun = try? SpanishGenderNeutral.CustomPronoun(thirdPerson: "ello",
 SpanishGenderNeutral.inflected(attributedString, customPronoun: customPronoun) // == "Ello es bienvenida!"
 ```
 
+## C -> QU
+
+This library converts the letter 'c' into 'qu' when it's needed. For example:
+
+```swift
+
+import Foundation
+import SpanishGenderNeutral
+
+var attributedString = AttributedString(localized: "Hola chicos!")
+var morphology = Morphology()
+
+morphology.grammaticalGender = .neuter
+attributedString.inflect = InflectionRule(morphology: morphology)
+
+SpanishGenderNeutral.inflected(attributedString) // == "Hola chiques!"
+```
+
 ## Attributes
 
 Custom attributes of an `AttributedString` are kept.

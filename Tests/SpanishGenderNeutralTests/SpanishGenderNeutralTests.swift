@@ -60,6 +60,10 @@ final class SpanishGenderNeutralTests: XCTestCase {
         try test("Él es bienvenido!", expected: "Ella es bienvenida!", grammaticalGender: .feminine)
     }
     
+    func testChiques() throws {
+        try test("Hola chicos!", expected: "Hola chiques!", grammaticalGender: .neuter)
+    }
+    
     func testWithAttributes() throws {
         
         var morphology = Morphology()

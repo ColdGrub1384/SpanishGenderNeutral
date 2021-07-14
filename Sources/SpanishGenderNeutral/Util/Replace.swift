@@ -28,13 +28,30 @@ func replace(masculine: String, feminine: String, customPronoun: SpanishGenderNe
                 for character in word.element.enumerated() {
                     let otherCharacter = otherWord[String.Index(utf16Offset: character.offset, in: otherWord)]
                     
-                    if character.element == "o" && otherCharacter == "a" {
+                    if character.element.lowercased() == "o" && otherCharacter.lowercased() == "a" {
                         
-                        characters.append(Character(customPronoun.genderedSuffix))
+                        if customPronoun.needsQU {
+                            
+                            if characters.last == "c" {
+                                characters.removeLast()
+                                characters.append("q")
+                                characters.append("u")
+                            } else if characters.last == "C" {
+                                characters.removeLast()
+                                characters.append("Q")
+                                characters.append("U")
+                            }
+                        }
                         
-                    } else if character.element == "O" && otherCharacter == "A" {
-                        
-                        characters.append(Character(customPronoun.genderedSuffix.uppercased()))
+                        if character.element == "o" && otherCharacter == "a" {
+                            
+                            characters.append(Character(customPronoun.genderedSuffix))
+                            
+                        } else if character.element == "O" && otherCharacter == "A" {
+                            
+                            characters.append(Character(customPronoun.genderedSuffix.uppercased()))
+                            
+                        }
                         
                     } else {
                         characters.append(character.element)
