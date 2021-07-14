@@ -106,7 +106,7 @@ Custom attributes of an `AttributedString` are kept.
 
 ## Why should I use this library?
 
-This library makes it easier to localize strings and apply automatic grammar agreement with custom behavior for a neutral term of address and a not specified term of address. For example, you can use this single string: `"^[Bienvenido](inflect: true, inflectionAlternative: 'Te damos la bienvenida')!"` and it wil be converted to:
+This library makes it easier to localize strings and apply automatic grammar agreement with custom behavior for a neuter term of address and a not specified term of address. For example, you can use this single string: `"^[Bienvenido](inflect: true, inflectionAlternative: 'Te damos la bienvenida')!"` and it wil be converted to:
 
 * `"Bienvenido!"` for masculine
 * `"Bienvenida!"` for feminine
@@ -114,6 +114,8 @@ This library makes it easier to localize strings and apply automatic grammar agr
 * `"Te damos la bienvenida!"` for not specified.
 
 Foundation doesn't make a difference between neuter and not specified when applying automatic grammar agreement, which means that you will need to provide two different strings if you want a different text for neuter and not specified.
+
+This library also supports custom suffixes and pronouns, which means you can provide one string that can be converted into many forms.
 
 ## Requirements
 
