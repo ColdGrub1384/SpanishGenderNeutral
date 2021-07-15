@@ -69,7 +69,7 @@ It uses "elle" as a neuter pronoun and changes "bienvenido" to "bienvenide".
 
 import Foundation
 
-var attributedString = AttributedString(localized: "^[Bienvenido](inflect: true, inflectionAlternative: 'Te damos la bienvenida')!")
+var attributedString = AttributedString(localized: "^[Bienvenido](noGrammaticalGender: 'Te damos la bienvenida')!", including: \.spanishGenderNeutral)
 var morphology = Morphology()
 
 morphology.grammaticalGender = .neuter
@@ -122,9 +122,9 @@ SpanishGenderNeutral.inflected(attributedString) // == "Hola chiques!"
 
 Custom attributes of an `AttributedString` are kept.
 
-## Why should I use this library?
+## No grammatical gender
 
-This library makes it easier to localize strings and apply automatic grammar agreement with custom behavior for a neuter term of address and a not specified term of address. For example, you can use this single string: `"^[Bienvenido](inflect: true, inflectionAlternative: 'Te damos la bienvenida')!"` and it wil be converted to:
+You can use this single string: `"^[Bienvenido](noGrammaticalGender: 'Te damos la bienvenida')!"` and it wil be converted to:
 
 * `"Bienvenido!"` for masculine
 * `"Bienvenida!"` for feminine
@@ -133,7 +133,13 @@ This library makes it easier to localize strings and apply automatic grammar agr
 
 Foundation doesn't make a difference between neuter and not specified when applying automatic grammar agreement, which means that you will need to provide two different strings if you want a different text for neuter and not specified.
 
-This library also supports custom suffixes and pronouns, which means you can provide one string that can be converted into many forms.
+You must include the SpanishGenderNeutral attributes for that:
+
+```swift
+var attributedString = AttributedString(localized: "^[Bienvenido](noGrammaticalGender: 'Te damos la bienvenida')!", including: \.spanishGenderNeutral)
+```
+
+If your string is `^[Bienvenido](inflect: true, inflectionAlternative: 'Te damos la bienvenida')`, this library will use the `inflectionAlternatice` when no grammatical gender (Foundation will also use it for neuter). But it crashes for me so I created a custom attribute.
 
 ## Requirements
 

@@ -82,4 +82,17 @@ final class SpanishGenderNeutralTests: XCTestCase {
         
         XCTAssertEqual(input, expected)
     }
+    
+    func testNoGrammaticalGender() {
+        var morphology = Morphology()
+        morphology.grammaticalGender = .none
+        
+        var input = AttributedString(localized: "^[Bienvenido](noGrammaticalGender: 'Te damos la bienvenida')", including: \.spanishGenderNeutral)
+        input.languageIdentifier = "es"
+        input.inflect = InflectionRule(morphology: morphology)
+        
+        input = SpanishGenderNeutral.inflected(input)
+        
+        XCTAssertEqual(String(input.characters), "Te damos la bienvenida")
+    }
 }

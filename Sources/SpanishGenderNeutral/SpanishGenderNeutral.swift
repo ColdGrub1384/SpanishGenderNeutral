@@ -76,6 +76,21 @@ public struct SpanishGenderNeutral {
                 attr.languageIdentifier = Locale.preferredLanguages.first
             }
             
+            if morphology?.grammaticalGender == .none {
+                
+                var newAttr = AttributedString()
+                for run in attr.runs {
+                    if let alternative = run.spanishGenderNeutral.noGrammaticalGender, var attr = try? AttributedString(markdown: alternative, including: \.spanishGenderNeutral) {
+                        attr.setAttributes(run.attributes)
+                        newAttr.append(attr)
+                    } else {
+                        newAttr.append(attr[run.range])
+                    }
+                }
+                
+                attr = newAttr
+            }
+            
             return attr.inflected()
         }
         
