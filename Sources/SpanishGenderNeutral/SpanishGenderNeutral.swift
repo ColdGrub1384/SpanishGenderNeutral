@@ -69,7 +69,14 @@ public struct SpanishGenderNeutral {
         }
         
         guard morphology?.grammaticalGender == .neuter || customPronoun != nil  else { // Default Apple implementation for anything else
-            return attributedString.inflected()
+            
+            var attr = attributedString
+            
+            if attr.languageIdentifier == ".lproj" {
+                attr.languageIdentifier = Locale.preferredLanguages.first
+            }
+            
+            return attr.inflected()
         }
         
         var masculine = attributedString
@@ -77,6 +84,11 @@ public struct SpanishGenderNeutral {
         masculineMorphology.grammaticalGender = .masculine
         masculine.morphology = masculineMorphology
         masculine.inflect = InflectionRule(morphology: masculineMorphology)
+        
+        if masculine.languageIdentifier == ".lproj" {
+            masculine.languageIdentifier = Locale.preferredLanguages.first
+        }
+        
         masculine = masculine.inflected()
         
         var feminine = attributedString
@@ -84,6 +96,11 @@ public struct SpanishGenderNeutral {
         feminineMorphology.grammaticalGender = .feminine
         feminine.morphology = feminineMorphology
         feminine.inflect = InflectionRule(morphology: feminineMorphology)
+        
+        if feminine.languageIdentifier == ".lproj" {
+            feminine.languageIdentifier = Locale.preferredLanguages.first
+        }
+        
         feminine = feminine.inflected()
         
         let result = replace(masculine: masculine, feminine: feminine, customPronoun: customPronoun ?? (try! CustomPronoun(thirdPerson: "elle", genderedSuffix: "e")))
