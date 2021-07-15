@@ -139,7 +139,7 @@ You must include the SpanishGenderNeutral attributes for that:
 var attributedString = AttributedString(localized: "^[Bienvenido](noGrammaticalGender: 'Te damos la bienvenida')!", including: \.spanishGenderNeutral)
 ```
 
-If your string is `^[Bienvenido](inflect: true, inflectionAlternative: 'Te damos la bienvenida')`, this library will use the `inflectionAlternatice` when no grammatical gender (Foundation will also use it for neuter). But it crashes for me so I created a custom attribute.
+If your string is `^[Bienvenido](inflect: true, inflectionAlternative: 'Te damos la bienvenida')`, this library will use the `inflectionAlternative` when no grammatical gender (Foundation will also use it for neuter). But it crashes for me so I created a custom attribute.
 
 ## Requirements
 
