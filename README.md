@@ -100,9 +100,9 @@ let customPronoun = try? SpanishGenderNeutral.CustomPronoun(thirdPerson: "ello",
 SpanishGenderNeutral.inflected(attributedString, customPronoun: customPronoun) // == "Ello es bienvenida!"
 ```
 
-## C -> QU
+## C, G
 
-This library converts the letter 'c' into 'qu' when it's needed. For example:
+This library converts the letter 'c' into 'qu' and 'g' into 'gu' when it's needed. For example:
 
 ```swift
 

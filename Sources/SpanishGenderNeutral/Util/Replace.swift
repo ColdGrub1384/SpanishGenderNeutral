@@ -41,6 +41,16 @@ func replace(masculine: String, feminine: String, customPronoun: SpanishGenderNe
                                 characters.append("Q")
                                 characters.append("U")
                             }
+                            
+                            if characters.last == "g" {
+                                characters.removeLast()
+                                characters.append("g")
+                                characters.append("u")
+                            } else if characters.last == "G" {
+                                characters.removeLast()
+                                characters.append("G")
+                                characters.append("U")
+                            }
                         }
                         
                         if character.element == "o" && otherCharacter == "a" {
