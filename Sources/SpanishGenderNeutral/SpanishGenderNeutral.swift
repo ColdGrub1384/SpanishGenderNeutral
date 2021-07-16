@@ -56,7 +56,11 @@ public struct SpanishGenderNeutral {
     public static func inflected(_ attributedString: AttributedString, customPronoun: CustomPronoun? = nil) -> AttributedString {
         
         guard Locale.preferredLanguages.first == "es" || Locale.preferredLanguages.first?.hasPrefix("es-") == true || attributedString.languageIdentifier == "es" else { // Spanish only
-            return attributedString.inflected()
+            var attr = attributedString
+            if attr.languageIdentifier == ".lproj" {
+                attr.languageIdentifier = Locale.preferredLanguages.first
+            }
+            return attr.inflected()
         }
         
         var morphology: Morphology?
